@@ -6,8 +6,9 @@
 package FileHandler;
 
 import ORF.findORF;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import sql_con.SQL_con;
 
 /**
  *
@@ -31,71 +32,85 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tf_Path = new javax.swing.JTextField();
-        bladerButton = new javax.swing.JButton();
-        controleerButton = new javax.swing.JButton();
+        TF_Path = new javax.swing.JTextField();
+        BladerButton = new javax.swing.JButton();
+        ControleerButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        searchORFbutton = new javax.swing.JButton();
-        exportORFButton = new javax.swing.JButton();
+        SearchORFbutton = new javax.swing.JButton();
+        ExportORFButton = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ta_Statistics = new javax.swing.JTextArea();
-        database_item_button = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ta_databaseItems = new javax.swing.JTextArea();
+        TA_Statistics = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tf_Path.setBackground(new java.awt.Color(204, 204, 204));
-
-        bladerButton.setText("Bladeren");
-        bladerButton.addActionListener(new java.awt.event.ActionListener() {
+        BladerButton.setText("Bladeren");
+        BladerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bladerButtonActionPerformed(evt);
+                BladerButtonActionPerformed(evt);
             }
         });
 
-        controleerButton.setText("Controleren");
-        controleerButton.addActionListener(new java.awt.event.ActionListener() {
+        ControleerButton.setText("Controleren");
+        ControleerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                controleerButtonActionPerformed(evt);
+                ControleerButtonActionPerformed(evt);
             }
         });
 
         jLabel1.setText("File");
 
-        searchORFbutton.setText("Search ORF");
-        searchORFbutton.setEnabled(false);
-        searchORFbutton.addActionListener(new java.awt.event.ActionListener() {
+        SearchORFbutton.setText("Search ORF");
+        SearchORFbutton.setEnabled(false);
+        SearchORFbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchORFbuttonActionPerformed(evt);
+                SearchORFbuttonActionPerformed(evt);
             }
         });
 
-        exportORFButton.setText("Export ORF");
-        exportORFButton.setEnabled(false);
-        exportORFButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exportORFButtonActionPerformed(evt);
-            }
-        });
+        ExportORFButton.setText("Export ORF");
+        ExportORFButton.setEnabled(false);
 
-        ta_Statistics.setBackground(new java.awt.Color(204, 204, 204));
-        ta_Statistics.setColumns(20);
-        ta_Statistics.setRows(5);
-        jScrollPane1.setViewportView(ta_Statistics);
+        jButton5.setText("Visualiseer");
 
-        database_item_button.setText("View database items");
-        database_item_button.setEnabled(false);
-        database_item_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                database_item_buttonActionPerformed(evt);
-            }
-        });
+        jButton6.setText("BLAST");
 
-        ta_databaseItems.setBackground(new java.awt.Color(204, 204, 204));
-        ta_databaseItems.setColumns(20);
-        ta_databaseItems.setRows(5);
-        jScrollPane2.setViewportView(ta_databaseItems);
+        jButton7.setText("Export BLAST");
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 208, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+        );
+
+        TA_Statistics.setBackground(new java.awt.Color(204, 204, 204));
+        TA_Statistics.setColumns(20);
+        TA_Statistics.setRows(5);
+        jScrollPane1.setViewportView(TA_Statistics);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,20 +119,23 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(tf_Path, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                        .addComponent(TF_Path, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(bladerButton))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2))
+                        .addComponent(BladerButton))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(database_item_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exportORFButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchORFbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(controleerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ExportORFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchORFbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ControleerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
@@ -125,48 +143,53 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_Path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bladerButton)
+                    .addComponent(TF_Path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BladerButton)
                     .addComponent(jLabel1)
-                    .addComponent(controleerButton))
+                    .addComponent(ControleerButton))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(searchORFbutton)
+                        .addComponent(SearchORFbutton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exportORFButton))
+                        .addComponent(ExportORFButton))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(database_item_button)
-                        .addGap(101, 101, 101))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                        .addComponent(jButton6)
+                        .addGap(3, 3, 3)
+                        .addComponent(jButton7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bladerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bladerButtonActionPerformed
+    private void BladerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BladerButtonActionPerformed
         FileChooser bladerBestand = new FileChooser();
         bladerBestand.ChooseFile();
         
         // pad toegevoegd aan textfield. Verkregen uit de class Bladeren. 
-        tf_Path.setText(bladerBestand.getPath());
-    }//GEN-LAST:event_bladerButtonActionPerformed
+        TF_Path.setText(bladerBestand.getPath());
+    }//GEN-LAST:event_BladerButtonActionPerformed
 
-    private void controleerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controleerButtonActionPerformed
+    private void ControleerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ControleerButtonActionPerformed
         FileReader reader = new FileReader();
         try {
             // FileReader class wordt aangeroepen waarin het pad van het bestand wordt meegegeven. 
-            reader.Read(tf_Path.getText());
+            reader.Read(TF_Path.getText());
         } catch (NotNuclSequence ex) {
-            JOptionPane.showMessageDialog(null, "Dit is geen DNA sequentie!", "Fout melding", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         // nadat de template strand is aangemaakt, wordt a.d.h.v de template strand de complementaire strand gemaakt.
@@ -174,16 +197,16 @@ public class GUI extends javax.swing.JFrame {
         
         // als de complementaire streng gegenereerd is, dan is de DNA sequentie goedgekeurd. 
         if(!reader.getComplementStrand().isEmpty()){
-            ta_Statistics.setText("Goede DNA sequentie!");
+            TA_Statistics.setText("Goede DNA sequentie!");
         }
         
         // Als de textarea niet leeg is, dan staat er goede DNA sequentie dus kan er een ORF gezocht worden. Als het geen DNA sequentie is, kan er geen ORF gezocht worden
-        if(!ta_Statistics.getText().isEmpty()){
-            searchORFbutton.setEnabled(rootPaneCheckingEnabled);
+        if(!TA_Statistics.getText().isEmpty()){
+            SearchORFbutton.setEnabled(rootPaneCheckingEnabled);
         }
-    }//GEN-LAST:event_controleerButtonActionPerformed
+    }//GEN-LAST:event_ControleerButtonActionPerformed
 
-    private void searchORFbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchORFbuttonActionPerformed
+    private void SearchORFbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchORFbuttonActionPerformed
         // De gebruiker geeft aan hoelang het ORF minimaal moet zijn, default staat op 100 nucleotiden lang
         String settings = JOptionPane.showInputDialog("ORF length: ", 100);
         
@@ -191,47 +214,33 @@ public class GUI extends javax.swing.JFrame {
         orf.setORF(settings);
         
         // Als er op de search button wordt geklikt, dan wordt de text area leeg gemaakt.
-        ta_Statistics.setText(null);
+        TA_Statistics.setText(null);
         
         // Doormiddel van de indexen van de arraylists de statistieken van de template strand in de text area zetten.
         for (int ArrayIndex_Temp = 0; ArrayIndex_Temp < orf.getORFsequenceTemp().size(); ArrayIndex_Temp++) {
-            ta_Statistics.append("ORF template strand: " + "\t" +orf.getORFsequenceTemp().get(ArrayIndex_Temp) + "\n" +
-                    "Positie start codon: " + "\t" + orf.getORFstartTemp().get(ArrayIndex_Temp) + "\n" + 
-                    "Positie stop codon: " + "\t" + orf.getORFendTemp().get(ArrayIndex_Temp) + "\n" + 
-                    "Reading frame: " + "\t" + "+" + orf.getORFrfTemp().get(ArrayIndex_Temp) + "\n\n");
+            TA_Statistics.append("ORF template strand: " + "\t" +orf.getORFsequenceTemp().get(ArrayIndex_Temp) + "\n");
+            TA_Statistics.append("Positie start codon: " + "\t" + orf.getORFstartTemp().get(ArrayIndex_Temp) + "\n");
+            TA_Statistics.append("Positie stop codon: " + "\t" + orf.getORFendTemp().get(ArrayIndex_Temp) + "\n");
+            TA_Statistics.append("Reading frame: " + "\t" + "+" + orf.getORFrfTemp().get(ArrayIndex_Temp) + "\n");
+            TA_Statistics.append("\n");
         }
         
         // Doormiddel van de indexen van de arraylists de statistieken van de complement strand in de text area zetten.
         for (int ArrayIndex_Comp = 0; ArrayIndex_Comp < orf.getORFsequenceComp().size(); ArrayIndex_Comp++) {
-            ta_Statistics.append("ORF complement strand: " + "\t" +orf.getORFsequenceComp().get(ArrayIndex_Comp) + "\n" +
-                    "Positie start codon: " + "\t" + orf.getORFstartComp().get(ArrayIndex_Comp) + "\n" +
-                    "Positie stop codon: " + "\t" + orf.getORFendComp().get(ArrayIndex_Comp) + "\n" +
-                    "Reading frame: " + "\t" + "-" + orf.getORFrfComp().get(ArrayIndex_Comp) + "\n\n");        
+            TA_Statistics.append("ORF complement strand: " + "\t" +orf.getORFsequenceComp().get(ArrayIndex_Comp) + "\n");
+            TA_Statistics.append("Positie start codon: " + "\t" + orf.getORFstartComp().get(ArrayIndex_Comp) + "\n");
+            TA_Statistics.append("Positie stop codon: " + "\t" + orf.getORFendComp().get(ArrayIndex_Comp) + "\n");
+            TA_Statistics.append("Reading frame: " + "\t" + "-" + orf.getORFrfComp().get(ArrayIndex_Comp) + "\n");
+            TA_Statistics.append("\n");            
         }
         
         // Als de textarea niet leeg is, dan zijn er waardes om te exporteren dus kan de button enabled worden. 
-        if(!ta_Statistics.getText().isEmpty()){
-            exportORFButton.setEnabled(rootPaneCheckingEnabled);
-            database_item_button.setEnabled(rootPaneCheckingEnabled);
+        if(!TA_Statistics.getText().isEmpty()){
+            ExportORFButton.setEnabled(rootPaneCheckingEnabled);
         }else{
-            ta_Statistics.append("Er kan niets geëxporteerd worden");
+            TA_Statistics.append("Er kan niets geëxporteerd worden");
         }
-    }//GEN-LAST:event_searchORFbuttonActionPerformed
-
-    private void exportORFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportORFButtonActionPerformed
-        SQL_con con = new SQL_con();
-        con.connect();
-        con.getDatabaseItems();
-    }//GEN-LAST:event_exportORFButtonActionPerformed
-
-    private void database_item_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_database_item_buttonActionPerformed
-        SQL_con con = new SQL_con();
-        con.setDatabaseItems();
-        
-        for (int i = 0; i < con.getDatabaseItems().size(); i++) {
-            ta_databaseItems.append((String) con.getDatabaseItems().get(i));
-        }
-    }//GEN-LAST:event_database_item_buttonActionPerformed
+    }//GEN-LAST:event_SearchORFbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,17 +278,19 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bladerButton;
-    private javax.swing.JButton controleerButton;
-    private javax.swing.JButton database_item_button;
-    private javax.swing.JButton exportORFButton;
+    private javax.swing.JButton BladerButton;
+    private javax.swing.JButton ControleerButton;
+    private javax.swing.JButton ExportORFButton;
+    private javax.swing.JButton SearchORFbutton;
+    private javax.swing.JTextArea TA_Statistics;
+    private javax.swing.JTextField TF_Path;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton searchORFbutton;
-    private javax.swing.JTextArea ta_Statistics;
-    private javax.swing.JTextArea ta_databaseItems;
-    private javax.swing.JTextField tf_Path;
     // End of variables declaration//GEN-END:variables
 
 }
