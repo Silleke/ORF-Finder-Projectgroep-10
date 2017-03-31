@@ -5,9 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- *
- * @author amberjanssengroesbeek
+ * @author Amber Janssen Groesbeek en Danique Bodt
+ * 15-03-2017
+ * In deze class wordt de file ingelezen en gecontrolleerd op DNA, wanneer deze file niet alleen DNA bevat
+ * werpt hij een custom exception op. Ook wordt naast de template strand de complementaire strand aangemaakt.
  */
+
 public class FileReader {
     private static BufferedReader inFile;
     String header;
