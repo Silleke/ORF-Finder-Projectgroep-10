@@ -10,22 +10,22 @@ import java.util.regex.Pattern;
  * @author amberjanssengroesbeek
  */
 public class findORF { 
-    int ORFstart;
-    int ORFend;
-    int ORFreadingframe;
-    String ORFsequence;
+    int orfStart;
+    int orfEnd;
+    int orfReadingFrame;
+    String orfSequence;
     
     // Arrays voor statistieken template strand
-    ArrayList<Integer> ArrORFstart_temp = new ArrayList<>();
-    ArrayList<Integer> ArrORFend_temp = new ArrayList<>();
-    ArrayList<Integer> ArrORFrf_temp = new ArrayList<>();
-    ArrayList<String> ArrORF_temp = new ArrayList<>();
+    static ArrayList<Integer> arrORFstart_temp = new ArrayList<>();
+    static ArrayList<Integer> arrORFend_temp = new ArrayList<>();
+    static ArrayList<Integer> arrORFrf_temp = new ArrayList<>();
+    static ArrayList<String> arrORF_temp = new ArrayList<>();
     
     // Arrays voor statistieken complement strand
-    ArrayList<Integer> ArrORFstart_comp = new ArrayList<>();
-    ArrayList<Integer> ArrORFend_comp = new ArrayList<>();
-    ArrayList<Integer> ArrORFrf_comp = new ArrayList<>();
-    ArrayList<String> ArrORF_comp = new ArrayList<>();
+    static ArrayList<Integer> arrORFstart_comp = new ArrayList<>();
+    static ArrayList<Integer> arrORFend_comp = new ArrayList<>();
+    static ArrayList<Integer> arrORFrf_comp = new ArrayList<>();
+    static ArrayList<String> arrORF_comp = new ArrayList<>();
 
     /**
      * De regular expression voor het vinden van het ORF wordt hier bepaald en kijken of het matcht met de 
@@ -33,22 +33,22 @@ public class findORF {
      * hier aangeroepen. 
      */
     public void setORF(String ORF_length_input){
-        int ORF_length = Integer.parseInt(ORF_length_input);
+        int orfLength = Integer.parseInt(ORF_length_input);
         
         FileReader reader = new FileReader();
         String tempStr = reader.getTemplateStrand();
         String compStr = reader.getComplementStrand();
        
         // Deze regex zoekt al per drie nucleotiden. 
-        Pattern ORF_pattern = Pattern.compile("ATG([ATGC]{3})+?(TAA|TAG|TGA)");
-        Matcher ORF_TemplateStr = ORF_pattern.matcher(tempStr);
-        Matcher ORF_ComplementStr = ORF_pattern.matcher(compStr);
+        Pattern orfPattern = Pattern.compile("ATG([ATGC]{3})+?(TAA|TAG|TGA)");
+        Matcher orfTemplateStr = orfPattern.matcher(tempStr);
+        Matcher orfComplementStr = orfPattern.matcher(compStr);
         
         // statistieken voor de template strand
-        setStatisticsTemplate(tempStr, ORF_TemplateStr, ORF_length);
+        setStatisticsTemplate(tempStr, orfTemplateStr, orfLength);
         
         // statistieken voor de complement strand
-        setStatisticsComplement(compStr, ORF_ComplementStr, ORF_length);
+        setStatisticsComplement(compStr, orfComplementStr, orfLength);
     }
 
     /**
@@ -57,35 +57,35 @@ public class findORF {
      * de arraylist opgehaald kunnen worden in een andere class en de statistieken in de GUI weergeven kunnen worden.
      * 
      * @param tempStr           De template strand
-     * @param ORF_TemplateStr   
+     * @param orfTemplateStr   
      */
-    public void setStatisticsTemplate(String tempStr, Matcher ORF_TemplateStr, int ORF_length){            
+    public void setStatisticsTemplate(String tempStr, Matcher orfTemplateStr, int orfLength){            
         // Vinden van de waardes in de template strand
-        while(ORF_TemplateStr.find()){
+        while(orfTemplateStr.find()){
             // De sequentie van het ORF
-            ORFsequence = ORF_TemplateStr.group();
+            orfSequence = orfTemplateStr.group();
 
             // Positie van het start codon in de sequentie
-            ORFstart = ORF_TemplateStr.start();
+            orfStart = orfTemplateStr.start();
 
             // De positie van het eerste stopcodon is de lengte van het ORF plus de positie van het startcodon.
-            ORFend = ORF_TemplateStr.end();
+            orfEnd = orfTemplateStr.end();
 
             // Hierbij is er rekening gehouden met de index 0. 
-            if(ORFstart%3 == 0){
-                ORFreadingframe = 1;
-            }else if(ORFstart%3 == 1){
-                ORFreadingframe = 2;
+            if(orfStart%3 == 0){
+                orfReadingFrame = 1;
+            }else if(orfStart%3 == 1){
+                orfReadingFrame = 2;
             }else{
-                ORFreadingframe = 3;
+                orfReadingFrame = 3;
             }       
             
             // Als de lengte groter is dan de ingevoerde lengte van de gebruiker, dan worden de statistieken toegevoegd aan de arraylists.
-            if(ORFsequence.length() > ORF_length){
-                ArrORF_temp.add(ORFsequence);     
-                ArrORFstart_temp.add(ORFstart);
-                ArrORFend_temp.add(ORFend);
-                ArrORFrf_temp.add(ORFreadingframe);
+            if(orfSequence.length() > orfLength){
+                arrORF_temp.add(orfSequence);     
+                arrORFstart_temp.add(orfStart);
+                arrORFend_temp.add(orfEnd);
+                arrORFrf_temp.add(orfReadingFrame);
             }
         }
     }
@@ -96,36 +96,36 @@ public class findORF {
      * de arraylist opgehaald kunnen worden in een andere class en de statistieken in de GUI weergeven kunnen worden.
      * 
      * @param compStr               complement strand
-     * @param ORF_ComplementStr
+     * @param orfComplementStr
      */
 
-    public void setStatisticsComplement(String compStr, Matcher ORF_ComplementStr, int ORF_length){
+    public void setStatisticsComplement(String compStr, Matcher orfComplementStr, int orfLength){
         
-        while(ORF_ComplementStr.find()){
+        while(orfComplementStr.find()){
             // De ORF sequentie ophalen en toevoegen aan de arraylist
-            ORFsequence = ORF_ComplementStr.group();
+            orfSequence = orfComplementStr.group();
             
             // Positie van het start codon in de sequentie ophalen en aan de arraylist toevoegen
-            ORFstart = ORF_ComplementStr.start();
+            orfStart = orfComplementStr.start();
   
             // De positie van het eerste stopcodon is de lengte van het ORF plus de positie van het startcodon.
-            ORFend = ORF_ComplementStr.end();
+            orfEnd = orfComplementStr.end();
             
             // Hierbij is er rekening gehouden met de index 0, reading frame toevoegen aan arraylist
-            if(ORFstart%3 == 0){
-                ORFreadingframe = 1;
-            }else if(ORFstart%3 == 1){
-                ORFreadingframe = 2;
+            if(orfStart%3 == 0){
+                orfReadingFrame = 1;
+            }else if(orfStart%3 == 1){
+                orfReadingFrame = 2;
             }else{
-                ORFreadingframe = 3;
+                orfReadingFrame = 3;
             }
             
             // Als de lengte groter is dan de ingevoerde lengte van de gebruiker, dan worden de statistieken toegevoegd aan de arraylists.
-            if(ORFsequence.length() > ORF_length){
-                ArrORF_comp.add(ORFsequence);
-                ArrORFstart_comp.add(ORFstart);
-                ArrORFend_comp.add(ORFend);
-                ArrORFrf_comp.add(ORFreadingframe);
+            if(orfSequence.length() > orfLength){
+                arrORF_comp.add(orfSequence);
+                arrORFstart_comp.add(orfStart);
+                arrORFend_comp.add(orfEnd);
+                arrORFrf_comp.add(orfReadingFrame);
             }
         }
     }
@@ -136,7 +136,7 @@ public class findORF {
      */
 
     public ArrayList<Integer> getORFstartTemp(){
-        return ArrORFstart_temp;
+        return arrORFstart_temp;
     }
     
     /**
@@ -144,7 +144,7 @@ public class findORF {
      * @return ArrORFend_temp       ArrayList met voor elk ORF in de template strand de positie van het stop codon
      */
     public ArrayList<Integer> getORFendTemp(){
-        return ArrORFend_temp;
+        return arrORFend_temp;
     }
     
     /**
@@ -152,7 +152,7 @@ public class findORF {
      * @return ArrORFrf_temp        ArrayList met voor elk ORF in de template strand het reading frame van het ORF
      */
     public ArrayList<Integer> getORFrfTemp(){
-        return ArrORFrf_temp;
+        return arrORFrf_temp;
     }
     
     /**
@@ -160,7 +160,7 @@ public class findORF {
      * @return ArrORF_temp          ArrayList met alle sequenties van de ORFs in de template strand.
      */
     public ArrayList<String> getORFsequenceTemp(){
-        return ArrORF_temp;
+        return arrORF_temp;
     }
 
     /**
@@ -168,7 +168,7 @@ public class findORF {
      * @return ArrORFstart_comp     ArrayList met voor elk ORF in de complement strand de positie van het start codon
      */
     public ArrayList<Integer> getORFstartComp(){
-        return ArrORFstart_comp;
+        return arrORFstart_comp;
     }
     
     /**
@@ -176,7 +176,7 @@ public class findORF {
      * @return ArrORFend_comp       ArrayList met voor elk ORF in de complement strand de positie van het stop codon
      */
     public ArrayList<Integer> getORFendComp(){
-        return ArrORFend_comp;
+        return arrORFend_comp;
     }
     
     /**
@@ -184,7 +184,7 @@ public class findORF {
      * @return  ArrORFrf_comp       ArrayList met voor elk ORF in de complement strand het reading frame van het ORF
      */
     public ArrayList<Integer> getORFrfComp(){
-        return ArrORFrf_comp;
+        return arrORFrf_comp;
     }
     
     /**
@@ -192,7 +192,7 @@ public class findORF {
      * @return ArrORF_comp          ArrayList met alle sequenties van de ORFs in de complement strand.
      */
     public ArrayList<String> getORFsequenceComp(){
-        return ArrORF_comp;
+        return arrORF_comp;
     }    
     
 }
